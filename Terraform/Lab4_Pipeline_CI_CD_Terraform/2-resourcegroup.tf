@@ -15,5 +15,6 @@ resource "azurerm_resource_group" "Terra_tfbackend_rg" {
   tags = {
     Client = var.tagClient
     Responsable = var.tagResponsable
+    environment = "Lab"
   }
 }
