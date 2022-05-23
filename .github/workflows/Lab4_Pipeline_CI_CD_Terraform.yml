@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tf-plan
-          path: monplan.tfplan
+          path: ./Terraform/Lab4_Pipeline_CI_CD_Terraform/monplan.tfplan
 
   Deploy-Terraform:
     runs-on: ubuntu-latest
