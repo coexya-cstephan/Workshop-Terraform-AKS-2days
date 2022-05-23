@@ -31,5 +31,13 @@ variable "AzureTenandID" {
 }
 
 
+#  Tags
+variable "tagClient" {
+  type    = string
+  default = "Coexya DIA"
+}
 
-
+variable "tagResponsable" {
+  type    = string
+  default = "CSN"
+}
