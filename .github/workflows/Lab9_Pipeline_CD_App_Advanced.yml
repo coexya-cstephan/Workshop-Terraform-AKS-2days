@@ -54,7 +54,7 @@ jobs:
               - [ ] Erreurs
               - [ ] Erreurs critiques
             ### Context
-            ${{ steps.context.outputs.ts }}
+            ${{ steps.context.outputs.issues }}
           pinned: false
           close-previous: false
         env:
