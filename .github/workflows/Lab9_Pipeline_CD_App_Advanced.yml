@@ -31,15 +31,15 @@ jobs:
             --ignore-test container-security-context-user-group-id \
             --ignore-test container-security-context-readonlyrootfilesystem \
             --ignore-test container-ephemeral-storage-request-equals-limit \
-            --ignore-test container-ephemeral-storage-request-and-limit
-
-#            --ignore-test container-resources \
-#            --ignore-test pod-probes \
-      - name: Create timestamp
+            --ignore-test container-ephemeral-storage-request-and-limit > ./result.txt
+          cat ./result.txt
+      
+      - name: Get context
         if: ${{ failure() }}
         run: |
-          echo "::set-output name=val::$(date "+%Y/%m/%d-%Hh-%Mm-%Ss")"
-        id: ts
+          echo "::set-output name=ts::$(date "+%Y/%m/%d-%Hh-%Mm-%Ss")"
+          echo "::set-output name=issues::$(cat ./result.txt)"
+        id: context
 
       - name: Create issue
         if: ${{ failure() }} # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
@@ -47,12 +47,14 @@ jobs:
         with:
           assignees: "coexya-cstephan"
           labels: "Kube-score"
-          title: "Erreur Kube-Score ${{ steps.ts.outputs.val }}"
+          title: "Erreur Kube-Score ${{ steps.context.outputs.ts }}"
           body: |
             ### Kube-Score checks
               - [ ] Info
               - [ ] Erreurs
               - [ ] Erreurs critiques
+            ### Context
+            ${{ steps.context.outputs.ts }}
           pinned: false
           close-previous: false
         env:
