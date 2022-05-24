@@ -47,7 +47,7 @@ jobs:
         with:
           assignees: "coexya-cstephan"
           labels: "Kube-score"
-          title: "Erreur Kube-Score ${{ steps.ts.val }}"
+          title: "Erreur Kube-Score ${{ steps.ts.outputs.val }}"
           body: |
             ### Kube-Score checks
               - [ ] Info
